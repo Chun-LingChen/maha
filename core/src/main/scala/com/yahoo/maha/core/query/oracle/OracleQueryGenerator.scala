@@ -548,8 +548,8 @@ b. Dim Driven
         }
         val (_, renderedPrimaryDim, _) = renderedDimensionsList.reduceRight {
           (renderedDim, b) =>
-            require(renderedDim._2.onCondition.isDefined,
-              s"Failed to determine join condition between ${primaryBundle.dim.name} and ${renderedDim._1}")
+//            require(renderedDim._2.onCondition.isDefined,
+//              s"Failed to determine join condition between ${primaryBundle.dim.name} and ${renderedDim._1}")
             if (requestModel.isDebugEnabled) {
               info(s"renderedDim: ${renderedDim._3.dim.name} renderedDim._3.dim.isDerivedDimension: ${renderedDim._3.dim.isDerivedDimension} hasNonPushDownFilters : ${renderedDim._3.hasNonPushDownFilters}")
               info(s"b: ${b._3.dim.name} b._3.dim.isDerivedDimension: ${b._3.dim.isDerivedDimension} hasNonPushDownFilters : ${b._3.hasNonPushDownFilters}")
