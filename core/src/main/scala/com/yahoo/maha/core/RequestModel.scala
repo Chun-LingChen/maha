@@ -738,13 +738,13 @@ object RequestModel extends Logging {
 
                     // always include primary key in dimension table for join
                     val requestedDimAliases = foreignkeyAlias ++ fields + publicDim.primaryKeyByAlias
-                    val filteredUpper = upperJoinCandidates//.filter(pd => pd.dimLevel != publicDim.dimLevel && pd.dimLevel >= aboveLevel)
+                    val filteredUpper = upperJoinCandidates.filter(pd => pd.dimLevel != publicDim.dimLevel && pd.dimLevel >= aboveLevel)
 
                     // attempting to find the better upper candidate if exist
                     // ads->adgroup->campaign hierarchy, better upper candidate for campaign is ad
                     val filteredUpperTopList = {
                       val bestUpperCandidates = filteredUpper
-                        //.filter(pd => pd.foreignKeyByAlias.contains(publicDim.primaryKeyByAlias))
+                        .filter(pd => pd.foreignKeyByAlias.contains(publicDim.primaryKeyByAlias))
                       val bestUpperDerivedCandidate = bestUpperCandidates.find(pd => pd.getBaseDim.isDerivedDimension)
                       val bestUpperCandidate = if (bestUpperDerivedCandidate.isDefined) {
                         Set(bestUpperDerivedCandidate.get)
